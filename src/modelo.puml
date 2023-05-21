@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+skin rose
+
+entity Instrumento{
+Codigo
+Precio
+Stock
+}
+entity Viento{
+Instrumento
+Material
+}
+entity Cuerda{
+Instrumento
+Tipo de cuerda
+Numero de cuerdas
+Material
+Tipo
+}
+entity Percusion{
+Instrumento
+Tipo de percusion
+Material
+Altura
+}
+Instrumento "1...* "-- "1...*"Cuerda : es de tipo
+Instrumento "1...*"--"1...*" Percusion : es de tipo
+Instrumento "1...*"--"1...*" Viento : es de tipo
+
+
+@enduml

@@ -1,0 +1,109 @@
+@startuml
+'https://plantuml.com/class-diagram
+skin rose
+
+
+
+
+package BeattheRhythm <<Folder>>{
+
+  package model <<Folder>> {
+
+    abstract class Instrumento{
+        -stockTotal: int
+        -codigoInstrumento: String
+        -precioInstrumento: int
+        -instrumento: String
+        +{method} Instrumento(codigoIntrumento: String, precioInstrumento: int, material: String)
+        +getCodigoInstrumento(): String
+        +getPrecioInstrumento(): int
+        +getInstrumento(): String
+        +getStockTotal(): String
+        +setStockTotal(): String
+        +abstract toString(): String
+    }
+
+    class Cuerda{
+        -material: String
+        -tipoCuerda: String
+        -numeroCuerdas: int
+        -tipoInstrumento: String
+        +{method} Cuerda (stock: int, material: String, codigoInstrumento: String, precioInstrumento: int, instrumento: String, tipoCuerda: String, numeroCuerdas: int, tipoInstrumento: String)
+        +{method} getMaterial(): String
+        +{method} getTipoCuerda(): String
+        +{method} getNumeroCuerdas(): int
+        +{method} getTipoInstrumento(): String
+        +toString(): String
+    }
+
+
+    class Viento{
+        -material: String
+        +{method} Viento (stock: int, material: String, codigoInstrumento: String, precioInstrumento: int, Instrumento: String)
+        +{method} getMaterial(): String
+        +toString(): String
+    }
+
+
+    class Percusion{
+        -material: String
+        -tipoPercusion: String
+        -altura: String
+        +{method} Percusion(stock: int, material: String, codigoInstrumento: String, precioInstrumento: int, instrumento: String, tipoPercusion: String, altura: String)
+        +{method} getMaterial(): String
+        +{method} getTipoPercusion(): String
+        +{method} getAltura(): String
+        +toString(): String
+    }
+  }
+
+  package utils <<Folder>>{
+
+    class ListaInstrumentos{
+
+        -arreglo: Instrumento[]
+        -cantidadInstrumento: int
+        -capacidadMaxima: int
+
+        +{method} ListaInstrumentos(capacidadMaxima: int)
+        +{method} buscarInstrumento(codigoInstrumento: String): int
+        +{method} obtenerInstrumento(posicion: int): Instrumento
+        +{method} agregarInstrumento(instrumento: Instrumento)
+        +{method} eliminarInstrumento(codigoInstrumento: String): boolean
+        +{method} eliminarRepetidos (posicion: int) void
+        +sumarStockRepetidos(): void
+        +desplegarInformacion(): void
+        +{method} getCantidadInstrumento(): int
+        +{method} getCantidaMaxima(): int
+    }
+  }
+
+  package Services <<Folder>> {
+
+    Interface Sistema{
+
+        +desplegarInventario(): void
+        +agregarInstrumento(): void
+        +leerArchivo(): void
+        +actualizarArchico(): void
+        +venderInstrumento(): void
+        +generarBoleta(): void
+
+    }
+
+    class SistemaImpl{
+        +SistemaImpl()
+        +main(args[]: String) void
+    }
+  }
+ListaInstrumentos o--> Instrumento
+SistemaImpl --> ListaInstrumentos
+
+SistemaImpl--|> Sistema
+Instrumento<|-- Cuerda
+Viento --|> Instrumento
+Percusion --|> Instrumento
+
+
+
+@enduml
